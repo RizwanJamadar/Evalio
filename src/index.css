@@ -1,0 +1,191 @@
+/* src/index.css */
+
+/* === Tailwind's Base Styles === */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* === Custom Theme Variables === */
+:root {
+  --radius: 0.625rem;
+
+  /* Light Theme Colors */
+  --color-success: #49de50;
+  --color-danger: #f75353;
+  --color-primary: #cac5fe;
+  --color-light: #d6e0ff;
+  --color-dark: #020408;
+
+  --background: #ffffff;
+  --foreground: #020408;
+
+  --border-color: rgba(0, 0, 0, 0.1);
+  --input-color: rgba(0, 0, 0, 0.15);
+  --ring-color: rgba(0, 0, 0, 0.5);
+
+  --bg-pattern: url("./pattern.png");
+}
+
+/* === Dark Mode Theme === */
+.dark {
+  --background: #0a0a0a;
+  --foreground: #ffffff;
+  --color-primary: #dddfff;
+  --border-color: rgba(255, 255, 255, 0.1);
+  --input-color: rgba(255, 255, 255, 0.15);
+  --ring-color: rgba(255, 255, 255, 0.5);
+}
+
+/* === Global Styles === */
+body {
+  @apply bg-[var(--background)] text-[var(--foreground)] font-sans antialiased;
+  background-image: url("/pattern.png"); /* Reference to the background image */
+  background-size: cover; /* Ensure the image covers the entire body */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Prevent the image from repeating */
+}
+/* === Typography === */
+h1 {
+  @apply text-4xl font-bold;
+}
+h2 {
+  @apply text-3xl font-semibold;
+}
+h3 {
+  @apply text-2xl font-semibold;
+}
+p {
+  @apply text-[var(--color-light)];
+}
+ul {
+  @apply list-disc list-inside;
+}
+li {
+  @apply text-[var(--color-light)];
+}
+
+/* === Components === */
+.btn {
+  @apply px-6 py-2 text-sm font-bold rounded-full shadow-md transition-all duration-300 focus:outline-none;
+}
+.btn-primary {
+  @apply bg-[#cac5fe] text-[#020408] hover:bg-opacity-80;
+}
+.btn-secondary {
+  @apply bg-[var(--foreground)] text-[var(--color-primary)] hover:bg-opacity-80;
+}
+.btn-success {
+  @apply bg-[var(--color-success)] text-white hover:bg-green-500;
+}
+.btn-danger {
+  @apply bg-[var(--color-danger)] text-white hover:bg-red-500;
+}
+
+/* === Card Component === */
+.card {
+  @apply bg-white dark:bg-[var(--background)] p-5 rounded-2xl shadow-md border border-[var(--border-color)];
+}
+
+/* === Forms === */
+.input {
+  @apply w-full p-3 rounded-md border border-[var(--input-color)] bg-[var(--color-light)] text-[var(--foreground)] focus:ring-2 focus:ring-[var(--ring-color)];
+}
+.label {
+  @apply text-[var(--color-light)] font-semibold mb-2 block;
+}
+
+/* === Layouts === */
+.container {
+  @apply max-w-7xl mx-auto px-4;
+}
+.section {
+  @apply py-12 px-6;
+}
+
+.auth-layout {
+  @apply flex items-center justify-center mx-auto max-w-7xl min-h-screen max-sm:px-4 max-sm:py-8;
+}
+
+.root-layout {
+  @apply flex mx-auto max-w-7xl flex-col gap-12 my-12 px-16 max-sm:px-4 max-sm:my-8;
+}
+
+.card-cta {
+  @apply flex flex-row blue-gradient-dark rounded-3xl px-16 py-6 items-center justify-between max-sm:px-4;
+}
+
+.interviews-section {
+  @apply flex flex-wrap gap-4 max-lg:flex-col w-full items-stretch;
+}
+
+.interview-text {
+  @apply text-lg text-center text-white;
+}
+
+.progress {
+  @apply h-1.5 text-[5px] font-bold bg-primary-200 rounded-full flex items-center justify-center;
+}
+
+.btn-disconnect {
+  @apply inline-block px-7 py-3 text-sm font-bold leading-5 text-white transition-colors duration-150 bg-red-600 border border-transparent rounded-full shadow-sm focus:outline-none focus:shadow-2xl hover:bg-red-200 min-w-28;
+}
+
+.btn-upload {
+  @apply flex min-h-14 w-full items-center justify-center gap-1.5 rounded-md;
+}
+
+.btn-upload {
+  @apply bg-dark-200 rounded-full min-h-12 px-5 cursor-pointer border overflow-hidden;
+}
+
+.card-border {
+  @apply border-gradient p-0.5 rounded-2xl w-fit;
+}
+
+.card {
+  @apply dark-gradient rounded-2xl min-h-full;
+}
+
+.form .label {
+  @apply !text-light-100 !font-normal;
+}
+
+.form .input {
+  @apply !bg-dark-200 !rounded-full !min-h-12 !px-5 placeholder:!text-light-100;
+}
+
+.form .btn {
+  @apply !w-full !bg-primary-200 !text-dark-100 hover:!bg-primary-200/80 !rounded-full !min-h-10 !font-bold !px-5 cursor-pointer;
+}
+.card-interview {
+  @apply dark-gradient rounded-2xl min-h-fit flex flex-col p-6 relative overflow-hidden gap-4;
+}
+
+/* Utility class without nesting */
+.blue-gradient-dark {
+  @apply bg-gradient-to-b from-[#171532] to-[#08090D];
+}
+
+.blue-gradient {
+  @apply bg-gradient-to-l from-[#FFFFFF] to-[#CAC5FE];
+}
+
+.dark-gradient {
+  @apply bg-gradient-to-b from-[#1A1C20] to-[#08090D];
+}
+
+.border-gradient {
+  @apply bg-gradient-to-b from-[#4B4D4F] to-[#4B4D4F33];
+}
+
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
