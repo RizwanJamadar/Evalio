@@ -53,13 +53,8 @@ const App = () => {
   const { currentUser, isLoading, fetchUserInfo } = useUserStore(); // Using Zustand store
 
   useEffect(() => {
-    // Listen to the auth state changes
     const unSub = onAuthStateChanged(auth, (user) => {
-      if (user) {
-        fetchUserInfo(user?.uid);
-      } else {
-        fetchUserInfo(null);
-      }
+      fetchUserInfo(user?.uid);
     });
 
     return () => {
@@ -67,6 +62,7 @@ const App = () => {
     };
   }, [fetchUserInfo]);
 
+  // Show loading screen when `isLoading` is true
   if (isLoading) {
     return (
       <div className="fixed inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center z-50 space-y-4">
@@ -76,6 +72,7 @@ const App = () => {
     );
   }
 
+  // Render the router when user info has been fetched and `isLoading` is false
   return <RouterProvider router={router} />;
 };
 

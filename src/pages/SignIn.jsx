@@ -19,7 +19,6 @@ const Login = () => {
     try {
       // Assuming Firebase authentication for login
       await signInWithEmailAndPassword(auth, email, password);
-      setMessage("Login successful!");
       navigate("/"); // Redirect to another page after successful login
     } catch (error) {
       setMessage("Login failed. Please check your credentials.");
