@@ -1,15 +1,27 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import {interviews} from "../data"
+import React, { useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { interviews } from "../data";
 import InterviewCard from "../components/InterviewCard";
+import { useUserStore } from "../lib/userStore"; // Zustand store for user state
 
 const Interviews = () => {
+  const navigate = useNavigate();
+  const { currentUser } = useUserStore(); // Access currentUser from Zustand store
+
+  useEffect(() => {
+    // Redirect to login page if currentUser is not available
+    if (!currentUser) {
+      navigate("/sign-in");
+    }
+  }, [currentUser, navigate]); 
+
   const hasPastInterviews = true;
   const hasUpcomingInterviews = true;
 
   const user = {
     id: 1,
   };
+
   return (
     <>
       <section className="card-cta">
@@ -20,7 +32,7 @@ const Interviews = () => {
           </p>
 
           <button asChild className="btn btn-primary max-sm:w-full">
-            <Link href="/interview">Start an Interview</Link>
+            <Link to="/interview">Start an Interview</Link>
           </button>
         </div>
 
@@ -76,8 +88,6 @@ const Interviews = () => {
           )}
         </div>
       </section>
-
-
     </>
   );
 };
